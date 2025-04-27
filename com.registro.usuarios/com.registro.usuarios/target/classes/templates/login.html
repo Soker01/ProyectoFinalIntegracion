@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8">
+	<title>Inicio de sesión</title>
+	<!-- Bootstrap 5 CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+	<style>
+		body {
+			background: #f8f9fa;
+		}
+		.card {
+			border-radius: 20px;
+			box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+		}
+		.form-control {
+			border-radius: 10px;
+		}
+		.btn-primary {
+			border-radius: 10px;
+		}
+		.navbar {
+			border-radius: 0 0 10px 10px;
+		}
+	</style>
+</head>
+<body>
+
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+		<div class="container">
+			<a class="navbar-brand" th:href="@{/}">Registro e inicio de sesión</a>
+		</div>
+	</nav>
+
+	<div class="container" style="margin-top: 100px;">
+		<div class="row justify-content-center">
+			<div class="col-md-6">
+				<div class="card p-4">
+					<h3 class="text-center mb-4">Inicio de sesión</h3>
+					<form th:action="@{/login}" method="post">
+
+						<div th:if="${param.error}">
+							<div class="alert alert-danger text-center">Usuario o contraseña inválidos</div>
+						</div>
+
+						<div th:if="${param.logout}">
+							<div class="alert alert-info text-center">Ha cerrado sesión exitosamente</div>
+						</div>
+
+						<div class="mb-3">
+							<label for="username" class="form-label">Correo electrónico</label>
+							<input type="text" class="form-control" id="username" name="username" placeholder="Digite su email" required autofocus>
+						</div>
+
+						<div class="mb-3">
+							<label for="password" class="form-label">Contraseña</label>
+							<input type="password" class="form-control" id="password" name="password" placeholder="Digite su contraseña" required>
+						</div>
+
+						<div class="d-grid">
+							<button type="submit" class="btn btn-primary">Iniciar sesión</button>
+						</div>
+					</form>
+
+					<div class="text-center mt-3">
+						<p>¿Nuevo usuario? <a th:href="@{/registro}">Regístrate aquí</a></p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Bootstrap 5 JS Bundle -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
